@@ -1,5 +1,5 @@
 # javascript-delegation
-The purpose of this project is to demonstrate the use of event delegation using Javascript.
+The purpose of this project is to demonstrate event delegation using Javascript.
 Admittedly this is a simple exercise and there are a number of ways to do it.  Furthermore,
 this also demonstrates how to create new elements and attach them to the DOM. I also used a
 simple CSS transition for affect.
