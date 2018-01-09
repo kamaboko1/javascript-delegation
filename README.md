@@ -8,7 +8,7 @@ The user may enter a food or delete an existing food item.  If the 'add food' bu
 without any food in the textfield, the user will receive a message.  Moreover, after each
 submission the textfield box is cleared so the user cannot enter the same food twice by accident.
 
-A live version of this can be seen at dpm65.com/js_delegation
+A live version of this can be seen at dpm65.com/jsdelegation
 
 Thanks
 D
