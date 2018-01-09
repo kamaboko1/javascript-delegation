@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+	<meta http-equiv="X-UA-Compatible" content="Edge">
+	<style>
+
+		#wrapper {
+			width: 500px;
+			margin: 0 auto;
+			border: 1px solid rgb(217, 220, 221);
+			border-radius: 8px;
+		}
+			#wrapper h1, p{
+				text-align: center;									
+			}
+
+		#food_form{
+			margin-left: 125px;
+		}
+
+
+		#btn {
+			background-color: rgb(100, 155, 244);
+			padding: 4px;
+			border-radius: 5px;
+			color: rgb(242, 242, 242);
+			cursor: pointer;
+		}
+
+		#food_input{
+			height: 23px;
+			border-radius: 5px;
+			border: 1px solid rgb(204, 204, 204);
+		}
+		
+		ul{
+			padding: 0 50px;
+		}
+		
+			li{
+				list-style-type: none;
+				height: 50px;
+			}
+
+				
+		.food{
+			font-size: 1.2rem;
+		}
+
+		.remove{
+			float: right;
+			background-color: rgba(211, 28, 19,.6);
+			color: rgb(242, 242, 242);
+			border-radius: 4px;
+			padding: 5px;
+			cursor: pointer;
+			transition: all .3s;
+		}
+			.remove:hover{
+				background-color: rgba(211, 28, 19, 1);
+				box-shadow: 3px 3px 7px rgb(191, 191, 191);
+			}
+
+	</style>
+	<title>JS Event Delegation</title>
+</head>
+<body>
+
+<div id="wrapper">
+	<h1>Favorite Foods!</h1>
+	<form id="food_form">
+		<button id="btn">Add Food</button>
+		<input id="food_input" type="text" placeholder="Enter food...">
+		
+	</form>
+	<p id="response"></p>
+	<div id="food_list">
+		<ul>
+
+			<li>
+				<span class="food">Pasta Pomodoro</span>
+				<span class="remove">Remove</span>
+			</li>
+
+			<li>
+				<span class="food">Pork Marsala</span>
+				<span class="remove">Remove</span>
+			</li>
+
+			<li>
+				<span class="food">Fry Bread Tacos</span>
+				<span class="remove">Remove</span>
+			</li>
+
+			<li>
+				<span class="food">Asian Beef with Snow Peas</span>
+				<span class="remove">Remove</span>
+			</li>
+			
+		</ul>
+
+	</div><!-- end of food-list -->
+</div><!-- end of wrapper -->
+
+
+
+<script>
+
+	// Remove food items - gather all elements within ul tag
+	let f_list = document.querySelector('#food_list ul');
+
+		// identify classes named 'remove'
+		f_list.addEventListener('click',function(e){
+
+			if(e.target.className == 'remove'){
+
+				// remove selected li tags
+				let li = e.target.parentElement;
+
+					li.parentElement.removeChild(li);
+
+			}
+
+		});
+
+	// Add food items - access form
+
+	let response = document.querySelector('#response');
+
+	let get_form = document.forms['food_form'];
+
+		get_form.addEventListener('submit', function(e){
+
+			// so submit btn doesn't refresh page with each food item added
+			e.preventDefault();
+
+			// get value from input
+			let value = get_form.querySelector('#food_input').value;
+
+			if(value.length <= 0){
+
+				// Negative response
+				response.style.color = "red";
+				response.textContent = "Enter some food!";
+
+			}else{
+
+			// Create new elements
+			let li = document.createElement('li');
+			let newFood = document.createElement('span');
+			let removeFood = document.createElement('span');
+
+			// Attach elements to DOM
+			li.appendChild(newFood);
+			li.appendChild(removeFood);
+			f_list.appendChild(li);
+
+			// Load text and classes
+			newFood.textContent= value;
+			removeFood.textContent = ' Remove'
+			newFood.classList.add('food');
+			removeFood.classList.add('remove');
+
+			// Positive response
+			response.style.color = "green";
+			response.textContent = "Yeah, gimme some more!";
+
+		   }
+
+		   get_form.reset();
+
+		});
+</script>	
+</body>
+</html>
